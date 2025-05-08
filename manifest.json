@@ -13,7 +13,7 @@
   },
   "api": {
     "type": "openapi",
-    "url": "https://raw.githubusercontent.com/weretradeITworker/GPTeAC/refs/heads/main/actions.yaml"
+    "url": "https://raw.githubusercontent.com/weretradeITworker/GPTeAC/main/actions.yaml"
   },
   "logo_url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg",
   "contact_email": "support@yourdomain.com",
