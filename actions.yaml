@@ -4,7 +4,7 @@ info:
   description: Full actions schema to manage inventory and publish listings on eBay via Inventory API
   version: 1.0.0
 servers:
-  - url: https://raw.githubusercontent.com
+  - url: https://a1baf10d.ebayredirect.pages.dev
 components:
   securitySchemes:
     OAuth2:
