@@ -4,7 +4,7 @@ info:
   description: Full actions schema to manage inventory and publish listings on eBay via Inventory API
   version: 1.0.0
 servers:
-  - url: https://shrill-disk-c035.fscheugenpflug4.workers.dev/
+  - url: https://shrill-disk-c035.fscheugenpflug4.workers.dev
 components:
   securitySchemes:
     OAuth2:
