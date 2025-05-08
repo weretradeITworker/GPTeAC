@@ -1,0 +1,132 @@
+openapi: 3.0.0
+info:
+  title: eBay Inventory API Actions
+  description: Full actions schema to manage inventory and publish listings on eBay via Inventory API
+  version: 1.0.0
+servers:
+  - url: https://api.ebay.com/sell/inventory/v1
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.ebay.com/identity/v1/oauth2/token
+          scopes:
+            https://api.ebay.com/oauth/api_scope/sell.inventory: Manage inventory on eBay
+security:
+  - OAuth2: []
+paths:
+  /inventory_item/{sku}:
+    get:
+      operationId: getInventoryItem
+      summary: Get Inventory Item
+      description: Retrieve inventory item record for a given SKU
+      parameters:
+        - name: sku
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+        '404':
+          description: Item not found
+    put:
+      operationId: createOrReplaceInventoryItem
+      summary: Create or Replace Inventory Item
+      description: Create or replace inventory item record for a given SKU
+      parameters:
+        - name: sku
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Inventory item created/updated
+    delete:
+      operationId: deleteInventoryItem
+      summary: Delete Inventory Item
+      description: Delete inventory item record by SKU
+      parameters:
+        - name: sku
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Successfully deleted
+        '404':
+          description: Item not found
+  /bulk_create_or_replace_inventory_item:
+    post:
+      operationId: bulkCreateOrReplaceInventoryItem
+      summary: Bulk Create or Replace Inventory Items
+      description: Create or update up to 25 inventory items
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Inventory items processed
+  /bulk_update_price_quantity:
+    post:
+      operationId: bulkUpdatePriceQuantity
+      summary: Bulk Update Price and Quantity
+      description: Update price/quantity for offers in bulk
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Price/quantity updated
+  /bulk_get_inventory_item:
+    post:
+      operationId: bulkGetInventoryItem
+      summary: Bulk Get Inventory Items
+      description: Retrieve up to 25 inventory item records by SKU
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Inventory items retrieved
+        '207':
+          description: Multi-Status (partial success)
+  /inventory_item:
+    get:
+      operationId: getInventoryItems
+      summary: Get All Inventory Items
+      description: Retrieve all inventory item records with pagination support
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Inventory items listed
+        '404':
+          description: No items found
