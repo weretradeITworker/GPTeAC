@@ -4,7 +4,7 @@ info:
   description: Full actions schema to manage inventory and publish listings on eBay via Inventory API
   version: 1.0.0
 servers:
-  - url: https://api.ebay.com/sell/inventory/v1
+  - url: https://yourdomain.com/ebayapi
 components:
   securitySchemes:
     OAuth2:
